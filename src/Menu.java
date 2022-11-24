@@ -14,12 +14,11 @@ public class Menu {
         do {
             System.out.print("Выберите пункт меню:\n" +
                     "1. Добавить задачу\n" +
-                    "2. Изменить задачу по ID\n"+
+                    "2. Изменить задачу по ID\n" +
                     "3. Удалить задачу по ID\n" +
                     "4. Получить задачу на указанную дату\n" +
                     "5. Показать все задачи в ежедневнике\n" +
-                    "6. Показать все удалённые задачи в архиве\n"+
-
+                    "6. Показать все удалённые задачи в архиве\n" +
                     "0. Выход\n");
 
             mainMenu = scanner.nextInt();
@@ -87,7 +86,7 @@ public class Menu {
                     "2. Ежедневная \n" +
                     "3. Еженедельная \n" +
                     "4. Ежемесячная \n" +
-                    "5. Ежегодная \n"+
+                    "5. Ежегодная \n" +
                     "0. Выход\n");
             int taskPeriodicityMenu = scanner.nextInt();
             switch (taskPeriodicityMenu) {
@@ -123,6 +122,7 @@ public class Menu {
         DiaryCalendar.removeTaskById(id);
 
     }
+
     public static void editTaskById() {
         System.out.println("Введите ID(номер) задачи:");
         int id = scanner.nextInt();
@@ -135,7 +135,7 @@ public class Menu {
         System.out.println("Задача обновлена!");
     }
 
-    public static void getTasksByDate(){
+    public static void getTasksByDate() {
         System.out.print("Введите дату (ДД.ММ.ГГГГ):");
         String date = scanner.next();
         DiaryCalendar.getTasksByDate(date);

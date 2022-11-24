@@ -20,7 +20,7 @@ public class Task {
 
     private DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 
-    public Task(String name, LocalDateTime dateTimeOfExecution, String description, TaskType taskType, TaskPeriodicity taskPeriodicity, int id){
+    public Task(String name, LocalDateTime dateTimeOfExecution, String description, TaskType taskType, TaskPeriodicity taskPeriodicity, int id) {
         this.name = ValidateUtil.validateString(name);
         this.description = ValidateUtil.validateString(description);
         this.type = taskType;
@@ -52,7 +52,7 @@ public class Task {
         return id;
     }
 
-    public boolean isDeleted(){
+    public boolean isDeleted() {
         return isDeleted;
     }
 
@@ -72,20 +72,22 @@ public class Task {
         this.id = id;
     }
 
-    public void setDone(){
+    public void setDone() {
         isDone = true;
-    }public void setNotDone(){
+    }
+
+    public void setNotDone() {
         isDone = false;
     }
-    public void setDeleted(){
+
+    public void setDeleted() {
         isDeleted = true;
     }
 
 
-
-    public String toString(){
+    public String toString() {
         String taskTypeStr = "";
-        switch(type){
+        switch (type) {
             case PERSONAL:
                 taskTypeStr = "Личная";
                 break;
@@ -112,26 +114,27 @@ public class Task {
                 break;
         }
 
-        return id+": "+name + "\n" + description + "\n" + taskTypeStr + "\n" + taskPeriodicityStr + "\n" + dtf.format(dateTimeOfExecution)+"\n----------------";
+        return id + ": " + name + "\n" + description + "\n" + taskTypeStr + "\n" + taskPeriodicityStr + "\n" + dtf.format(dateTimeOfExecution) + "\n----------------";
     }
 
-    public int hashCode(){
-        return Objects.hash(id,name,description,type,periodicity, dateOfExecution, dateTimeOfExecution);
+    public int hashCode() {
+        return Objects.hash(id, name, description, type, periodicity, dateOfExecution, dateTimeOfExecution);
     }
-    public boolean equals(Object o){
+
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o==null || this.getClass()!=o.getClass()){
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         Task task = (Task) o;
         return Objects.equals(task.name, name) &&
                 Objects.equals(task.description, description) &&
                 Objects.equals(task.type, type) &&
-                Objects.equals(task.periodicity,periodicity) &&
-                Objects.equals(task.dateOfExecution, dateOfExecution)&&
-                Objects.equals(task.dateTimeOfExecution,dateTimeOfExecution);
+                Objects.equals(task.periodicity, periodicity) &&
+                Objects.equals(task.dateOfExecution, dateOfExecution) &&
+                Objects.equals(task.dateTimeOfExecution, dateTimeOfExecution);
     }
 
 }

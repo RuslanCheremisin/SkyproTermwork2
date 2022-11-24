@@ -34,7 +34,6 @@ public class DiaryCalendar {
                     List<Task> tasks = new ArrayList<>();
                     tasks.add(new Task(name, dateTimeOfExecution, description, type, periodicity, 0));
                     activeTasks.put(dateTimeOfExecution.toLocalDate(), tasks);
-
                 } else {
                     activeTasks.get(dateTimeOfExecution.toLocalDate()).add(new Task(name, dateTimeOfExecution, description, type, periodicity, 0));
                 }
@@ -69,7 +68,6 @@ public class DiaryCalendar {
                     List<Task> tasksRepeat = new ArrayList<>();
                     tasksRepeat.add(new Task(name, dateTimeOfExecution.plusDays(7), description, type, periodicity, 0));
                     activeTasks.put(dateTimeOfExecution.toLocalDate().plusDays(7), tasksRepeat);
-
                 }
                 numberOfActiveTasks += 2;
                 break;
@@ -119,15 +117,14 @@ public class DiaryCalendar {
                         numberOfActiveTasks--;
                         numberOfDeletedTasks++;
                     }
-
                 }
             }
             sortTasks();
         } else {
             System.out.println("Нет такого задания в списке");
         }
-
     }
+
     public static void editTaskById(int id, String newName, String newDescription) {
         if (diaryContainsTaskById(id)) {
             for (Map.Entry<LocalDate, List<Task>> entry : activeTasks.entrySet()) {
@@ -136,14 +133,12 @@ public class DiaryCalendar {
                         task.setName(newName);
                         task.setDescription(newDescription);
                     }
-
                 }
             }
             sortTasks();
         } else {
             System.out.println("Нет такого задания в списке");
         }
-
     }
 
     private static boolean diaryContainsTaskById(int id) {
@@ -172,7 +167,6 @@ public class DiaryCalendar {
         }
     }
 
-
     public static void printActiveTasks() {
         for (Map.Entry<LocalDate, List<Task>> entry : activeTasks.entrySet()) {
             for (Task task : entry.getValue()) {
@@ -182,7 +176,6 @@ public class DiaryCalendar {
             }
         }
         System.out.println("В расписании " + numberOfActiveTasks + " задач");
-
     }
 
     public static void printDeletedTasks() {
@@ -194,7 +187,6 @@ public class DiaryCalendar {
             }
         }
         System.out.println("В архиве " + numberOfDeletedTasks + " задач");
-
     }
 }
 

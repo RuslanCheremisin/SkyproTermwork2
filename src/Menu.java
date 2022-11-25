@@ -1,3 +1,8 @@
+import DiaryCalendar.DiaryCalendar;
+import DiaryCalendar.TaskType;
+import DiaryCalendar.TaskPeriodicity;
+import DiaryCalendar.ValidateUtil;
+
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -49,7 +54,7 @@ public class Menu {
         } while (mainMenu != 0);
     }
 
-    public static void inputTask(Scanner scanner) {
+    private static void inputTask(Scanner scanner) {
         boolean taskIsDescribed = false;
         String taskDateStr;
         String taskTimeStr;
@@ -110,20 +115,20 @@ public class Menu {
                 default:
                     System.out.println("Выберите опцию из предложенных!\n");
             }
-            DiaryCalendar.addTask(getTaskName(), getTaskDateTime(), getTaskDescription(), getTaskType(), getTaskPeriodicity());
+            DiaryCalendar.addTask(taskName, taskDateTime, taskDescription, taskType, taskPeriodicity);
             taskIsDescribed = true;
         } while (taskIsDescribed = false);
 
     }
 
-    public static void removeTaskById() {
+    private static void removeTaskById() {
         System.out.println("Введите ID(номер) задачи:");
         int id = scanner.nextInt();
         DiaryCalendar.removeTaskById(id);
 
     }
 
-    public static void editTaskById() {
+    private static void editTaskById() {
         System.out.println("Введите ID(номер) задачи:");
         int id = scanner.nextInt();
         System.out.println("Введите новое название задачи:");
@@ -135,30 +140,10 @@ public class Menu {
         System.out.println("Задача обновлена!");
     }
 
-    public static void getTasksByDate() {
+    private static void getTasksByDate() {
         System.out.print("Введите дату (ДД.ММ.ГГГГ):");
         String date = scanner.next();
         DiaryCalendar.getTasksByDate(date);
-    }
-
-    public static String getTaskName() {
-        return taskName;
-    }
-
-    public static String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public static TaskType getTaskType() {
-        return taskType;
-    }
-
-    public static TaskPeriodicity getTaskPeriodicity() {
-        return taskPeriodicity;
-    }
-
-    public static LocalDateTime getTaskDateTime() {
-        return taskDateTime;
     }
 
 }

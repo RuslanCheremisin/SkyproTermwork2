@@ -1,3 +1,4 @@
+package DiaryCalendar;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +17,11 @@ public class DiaryCalendar {
         for (Map.Entry<LocalDate, List<Task>> entry : activeTasks.entrySet()) {
             entry.getValue().sort((Comparator.comparing(Task::getDateTimeOfExecution)));
             for (Task task : entry.getValue()) {
+                if(task.getDateOfExecution().isBefore(LocalDate.now())){
+                    task.setDeleted();
+                    numberOfActiveTasks--;
+                    numberOfDeletedTasks++;
+                }
                 if (!task.isDeleted()) {
                     countActive++;
                     task.setId(countActive);
@@ -155,6 +161,7 @@ public class DiaryCalendar {
 
     public static void getTasksByDate(String date) {
         if (activeTasks.containsKey(ValidateUtil.convertStringToDate(date))) {
+
             for (Task task : activeTasks.get(ValidateUtil.convertStringToDate(date))) {
                 if (!task.isDeleted()) {
                     System.out.println(task);
@@ -168,6 +175,7 @@ public class DiaryCalendar {
     }
 
     public static void printActiveTasks() {
+        System.out.println("Количество задач в расписании: " + numberOfActiveTasks);
         for (Map.Entry<LocalDate, List<Task>> entry : activeTasks.entrySet()) {
             for (Task task : entry.getValue()) {
                 if (!task.isDeleted()) {
@@ -175,10 +183,10 @@ public class DiaryCalendar {
                 }
             }
         }
-        System.out.println("В расписании " + numberOfActiveTasks + " задач");
     }
 
     public static void printDeletedTasks() {
+        System.out.println("Количество задач в архиве: " + numberOfDeletedTasks);
         for (Map.Entry<LocalDate, List<Task>> entry : activeTasks.entrySet()) {
             for (Task task : entry.getValue()) {
                 if (task.isDeleted()) {
@@ -186,7 +194,6 @@ public class DiaryCalendar {
                 }
             }
         }
-        System.out.println("В архиве " + numberOfDeletedTasks + " задач");
     }
 }
 

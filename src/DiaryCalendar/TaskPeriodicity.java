@@ -1,3 +1,5 @@
+package DiaryCalendar;
+
 public enum TaskPeriodicity {
     SINGLE,
     DAILY,

@@ -1,3 +1,5 @@
+package DiaryCalendar;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +9,6 @@ import java.util.Objects;
 public class Task {
     private int id;
     private String name;
-
     private String description;
     private TaskType type;
     private TaskPeriodicity periodicity;
@@ -32,58 +33,61 @@ public class Task {
     }
 
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public LocalDate getDateOfExecution() {
+    LocalDate getDateOfExecution() {
         return dateOfExecution;
     }
 
-    public LocalDateTime getDateTimeOfExecution() {
+    LocalDateTime getDateTimeOfExecution() {
         return dateTimeOfExecution;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public boolean isDeleted() {
+    boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDateTimeOfRecord(LocalDateTime dateTimeOfRecord) {
+    void setDateTimeOfRecord(LocalDateTime dateTimeOfRecord) {
         this.dateTimeOfRecord = dateTimeOfRecord;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = ValidateUtil.validateString(name);
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = ValidateUtil.validateString(description);
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
-    public void setDone() {
+    void setDateTimeOfExecution(LocalDateTime dateTime) {
+        this.dateTimeOfExecution = dateTime;
+    }
+
+    void setDone() {
         isDone = true;
     }
 
-    public void setNotDone() {
+    void setNotDone() {
         isDone = false;
     }
 
-    public void setDeleted() {
+    void setDeleted() {
         isDeleted = true;
     }
-
 
     public String toString() {
         String taskTypeStr = "";
@@ -113,7 +117,6 @@ public class Task {
                 taskPeriodicityStr = "Ежегодная";
                 break;
         }
-
         return id + ": " + name + "\n" + description + "\n" + taskTypeStr + "\n" + taskPeriodicityStr + "\n" + dtf.format(dateTimeOfExecution) + "\n----------------";
     }
 
